@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b35hinagp2gey"]
-
-[ext_resource type="Script" uid="uid://bcw05ssfb6220" path="res://prebuilds/src/trigger_3d.gd" id="1_4avnq"]
-
-[node name="Trigger3D" type="Area3D"]
-script = ExtResource("1_4avnq")
