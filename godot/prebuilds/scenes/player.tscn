@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://wwro2r5aip8e"]
+
+[ext_resource type="Script" uid="uid://2tdvahjbfptr" path="res://prebuilds/src/nodes/saver.gd" id="1_skglc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wj72s"]
+radius = 0.3
+height = 1.8
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_wj72s")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.1)
+
+[node name="Saver" type="Node" parent="."]
+script = ExtResource("1_skglc")
+properties_to_save = Array[StringName]([&"position", &"rotation "])
+metadata/_custom_type_script = "uid://2tdvahjbfptr"
