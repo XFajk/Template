@@ -1,9 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dldv0yut1qrbp"]
+[gd_scene load_steps=7 format=3 uid="uid://dldv0yut1qrbp"]
 
-[ext_resource type="Script" uid="uid://dokxcoil8uadv" path="res://prebuilds/src/loader.gd" id="1_6uqi0"]
-[ext_resource type="Script" uid="uid://doj2lvkbqx5o0" path="res://prebuilds/src/nodes/Saver.cs" id="1_8uh7m"]
 [ext_resource type="PackedScene" uid="uid://wwro2r5aip8e" path="res://prebuilds/scenes/player.tscn" id="2_8uh7m"]
-[ext_resource type="Script" uid="uid://dwp4cbo00wh2e" path="res://prebuilds/src/nodes/Interacter.cs" id="3_ppyta"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mf4mk"]
 radius = 0.2
@@ -22,7 +19,6 @@ size = Vector3(6, 0.25, 9.5)
 size = Vector3(6, 0.25, 9.5)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_6uqi0")
 
 [node name="Ball" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.75, 0)
@@ -33,15 +29,6 @@ shape = SubResource("SphereShape3D_mf4mk")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
 mesh = SubResource("SphereMesh_37kl0")
 surface_material_override/0 = SubResource("StandardMaterial3D_mf4mk")
-
-[node name="Saver" type="Node" parent="Ball"]
-script = ExtResource("1_8uh7m")
-PropertiesToSave = Array[StringName]([&"position", &"linear_velocity"])
-metadata/_custom_type_script = "uid://doj2lvkbqx5o0"
-
-[node name="Interacter" type="Node" parent="Ball"]
-script = ExtResource("3_ppyta")
-metadata/_custom_type_script = "uid://dwp4cbo00wh2e"
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
@@ -66,11 +53,6 @@ shape = SubResource("SphereShape3D_mf4mk")
 mesh = SubResource("SphereMesh_37kl0")
 surface_material_override/0 = SubResource("StandardMaterial3D_mf4mk")
 
-[node name="Saver" type="Node" parent="Ball2"]
-script = ExtResource("1_8uh7m")
-PropertiesToSave = Array[StringName]([&"position", &"linear_velocity"])
-metadata/_custom_type_script = "uid://doj2lvkbqx5o0"
-
 [node name="Ball3" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25, 0)
 
@@ -80,11 +62,6 @@ shape = SubResource("SphereShape3D_mf4mk")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ball3"]
 mesh = SubResource("SphereMesh_37kl0")
 surface_material_override/0 = SubResource("StandardMaterial3D_mf4mk")
-
-[node name="Saver" type="Node" parent="Ball3"]
-script = ExtResource("1_8uh7m")
-PropertiesToSave = Array[StringName]([&"position", &"linear_velocity"])
-metadata/_custom_type_script = "uid://doj2lvkbqx5o0"
 
 [node name="Ball4" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 2.5, -0.25)
@@ -96,10 +73,7 @@ shape = SubResource("SphereShape3D_mf4mk")
 mesh = SubResource("SphereMesh_37kl0")
 surface_material_override/0 = SubResource("StandardMaterial3D_mf4mk")
 
-[node name="Saver" type="Node" parent="Ball4"]
-script = ExtResource("1_8uh7m")
-PropertiesToSave = Array[StringName]([&"position", &"linear_velocity"])
-metadata/_custom_type_script = "uid://doj2lvkbqx5o0"
-
 [node name="Player" parent="." instance=ExtResource("2_8uh7m")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.25, -1.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -1.75)
+
+[node name="ShaderGlobalsOverride" type="ShaderGlobalsOverride" parent="."]
