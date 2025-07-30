@@ -14,10 +14,10 @@ public partial class FpsController : Node {
 
     [ExportCategory("Movement")]
     [Export]
-    public float MovemetnSpeed = 200.0f;
+    public float MovemetnSpeed = 2.0f;
 
     [Export]
-    public float RunningSpeed = 400.0f;
+    public float RunningSpeed = 3.5f;
 
     [Export]
     public float Acceleration = 15.0f;
@@ -26,7 +26,7 @@ public partial class FpsController : Node {
     public float Gravity = -20.0f;
 
     [Export]
-    public float JumpStrength = 450.0f;
+    public float JumpStrength = 7.5f;
 
     [Export]
     public float TerminalVelocity = -100.0f;
@@ -84,7 +84,7 @@ public partial class FpsController : Node {
                 break;
             case PlayerState.Moving:
                 Moving(delta);
-                break; 
+                break;
             default:
                 break;
         }
@@ -93,16 +93,7 @@ public partial class FpsController : Node {
     }
 
     private void Standing(double delta) {
-        if (Input.IsActionPressed("move_forward")) {
-            State = PlayerState.Moving;
-        }
-        if (Input.IsActionPressed("move_backward")) {
-            State = PlayerState.Moving;
-        }
-        if (Input.IsActionPressed("move_right")) {
-            State = PlayerState.Moving;
-        }
-        if (Input.IsActionPressed("move_left")) {
+        if (IsTryingToMove()) {
             State = PlayerState.Moving;
         }
 
@@ -117,22 +108,22 @@ public partial class FpsController : Node {
     }
 
     private void Moving(double delta) {
-        State = PlayerState.Standing;
+
+        Direction = Vector3.Zero;
+        if (!IsTryingToMove()) {
+            State = PlayerState.Standing;
+        }
 
         if (Input.IsActionPressed("move_forward")) {
-            State = PlayerState.Moving;
             Direction -= Body.Transform.Basis.Z;
         }
         if (Input.IsActionPressed("move_backward")) {
-            State = PlayerState.Moving;
             Direction += Body.Transform.Basis.Z;
         }
         if (Input.IsActionPressed("move_right")) {
-            State = PlayerState.Moving;
             Direction += Body.Transform.Basis.X;
         }
         if (Input.IsActionPressed("move_left")) {
-            State = PlayerState.Moving;
             Direction -= Body.Transform.Basis.X;
         }
 
@@ -148,12 +139,12 @@ public partial class FpsController : Node {
             if (Input.IsActionPressed("sprint")) {
                 goalSpeed = RunningSpeed;
             }
-            Body.Velocity = Body.Velocity.MoveToward(Direction * goalSpeed * (float)delta, Acceleration * (float)delta);
+            Body.Velocity = Body.Velocity.MoveToward(Direction * goalSpeed, Acceleration * (float)delta);
         }
     }
 
     private void Jump() {
-        VerticalSpeed = JumpStrength/60.0f;
+        VerticalSpeed = JumpStrength;
         Body.Velocity = new Vector3(Body.Velocity.X, VerticalSpeed, Body.Velocity.Z);
     }
 
@@ -171,6 +162,11 @@ public partial class FpsController : Node {
         }
 
         Body.Velocity = new Vector3(Body.Velocity.X, VerticalSpeed, Body.Velocity.Z);
+    }
+
+    private bool IsTryingToMove() {
+        return Input.IsActionPressed("move_forward") || Input.IsActionPressed("move_backward") ||
+               Input.IsActionPressed("move_left") || Input.IsActionPressed("move_right");
     }
 
 }
