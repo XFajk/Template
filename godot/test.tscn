@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dldv0yut1qrbp"]
+[gd_scene load_steps=12 format=3 uid="uid://dldv0yut1qrbp"]
 
 [ext_resource type="Script" uid="uid://dokxcoil8uadv" path="res://prebuilds/src/loader.gd" id="1_6uqi0"]
 [ext_resource type="Script" uid="uid://doj2lvkbqx5o0" path="res://prebuilds/src/nodes/Saver.cs" id="1_8uh7m"]
@@ -16,10 +16,19 @@ height = 0.4
 albedo_color = Color(1, 0, 0.0745098, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8uh7m"]
-size = Vector3(6, 0.25, 9.5)
+size = Vector3(30, 0.25, 30)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6uqi0"]
-size = Vector3(6, 0.25, 9.5)
+size = Vector3(30, 0.25, 30)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ppyta"]
+height = 2.87
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykrsh"]
+albedo_color = Color(1, 1, 0, 1)
+metallic = 0.51
+metallic_specular = 0.0
+roughness = 0.3
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_6uqi0")
@@ -103,3 +112,8 @@ metadata/_custom_type_script = "uid://doj2lvkbqx5o0"
 
 [node name="Player" parent="." instance=ExtResource("2_8uh7m")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.25, -1.75)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("CylinderMesh_ppyta")
+surface_material_override/0 = SubResource("StandardMaterial3D_ykrsh")

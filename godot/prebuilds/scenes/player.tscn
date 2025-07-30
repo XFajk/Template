@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://wwro2r5aip8e"]
 
-[ext_resource type="Script" uid="uid://c2dhatde7l4mp" path="res://prebuilds/src/controllers/fps_controller.gd" id="1_wj72s"]
+[ext_resource type="Script" uid="uid://bilrx1ovj65k8" path="res://prebuilds/src/controllers/FpsController.cs" id="1_wj72s"]
 [ext_resource type="Script" uid="uid://doj2lvkbqx5o0" path="res://prebuilds/src/nodes/Saver.cs" id="1_xnfb3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wj72s"]
@@ -9,14 +9,14 @@ height = 1.8
 
 [node name="Player" type="CharacterBody3D"]
 
+[node name="FpsController" type="Node" parent="."]
+script = ExtResource("1_wj72s")
+metadata/_custom_type_script = "uid://bilrx1ovj65k8"
+
 [node name="Saver" type="Node" parent="."]
 script = ExtResource("1_xnfb3")
 PropertiesToSave = Array[StringName]([&"position", &"rotation"])
 metadata/_custom_type_script = "uid://doj2lvkbqx5o0"
-
-[node name="FpsController" type="Node" parent="."]
-script = ExtResource("1_wj72s")
-metadata/_custom_type_script = "uid://c2dhatde7l4mp"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_wj72s")

@@ -1,4 +1,5 @@
 extends Node3D
+class_name Loader
 
 func _ready() -> void:
-    SaveSystem.load_game()
+    SaveSystem.delete_game()
